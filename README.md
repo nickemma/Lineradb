@@ -121,3 +121,6 @@ Milestone,Duration,Deliverable
 8,1 month,Encryption everywhere + auth system
 9,1 month,Autoscaling + backup/restore
 10,1–3 months,"Polish, write a 30–50 page design doc + record a 45-minute system design defense video"
+
+
+Create repo + push README → tweet “Starting the dumbest/smartest project of my life: building a global distributed SQL database from scratch, alone. Follow along. #NexusDB #BuildInPublic”

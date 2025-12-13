@@ -1,4 +1,4 @@
-# NexusDB — A Globally Distributed, Linearizable SQL Database from Scratch
+# LineraDB — A Globally Distributed, Linearizable SQL Database from Scratch
 
 ![Status](https://img.shields.io/badge/status-early_alpha-red)
 ![Rust](https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white)

@@ -22,6 +22,7 @@ make test
 ## Architecture
 
 Coming soon in `docs/ARCHITECTURE.md`
+Coming soon in `docs/ARCHI.md`
 
 ## License
 

@@ -1,0 +1,32 @@
+# name: Create Release
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   release:
+#     name: Create GitHub Release
+#     runs-on: ubuntu-latest
+#     if: startsWith(github.event.head_commit.message, 'release:')
+    
+#     steps:
+#       - name: Checkout code
+#         uses: actions/checkout@v4
+      
+#       - name: Extract version
+#         id: version
+#         run: |
+#           VERSION=$(echo "${{ github.event.head_commit.message }}" | grep -oP 'v\d+\.\d+\.\d+' || echo "v0.0.0")
+#           echo "version=$VERSION" >> $GITHUB_OUTPUT
+      
+#       - name: Create Release
+#         uses: actions/create-release@v1
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#         with:
+#           tag_name: ${{ steps.version.outputs.version }}
+#           release_name: Release ${{ steps.version.outputs.version }}
+#           draft: false
+#           prerelease: false

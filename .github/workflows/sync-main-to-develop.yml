@@ -1,0 +1,45 @@
+name: Sync main to develop (Auto-create & Auto-merge)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  sync-and-auto-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout develop as base
+        uses: actions/checkout@v4
+        with:
+          ref: develop
+          fetch-depth: 0
+
+      - name: Reset develop to main (force sync changes)
+        run: |
+          git fetch origin main
+          git reset --hard origin/main
+
+      - name: Create or Update Sync Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: auto-sync-main-to-develop
+          delete-branch: true
+          base: develop
+          title: "chore: Sync main → develop"
+          body: |
+            Automatic sync to keep `develop` up-to-date with `main`.
+            
+            This ensures any hotfixes or direct changes on `main` flow back.
+          commit-message: "chore: sync main into develop"
+          labels: automation,sync
+
+      - name: Enable Auto-Merge
+        if: steps.cpr.outputs.pull-request-number != null
+        uses: peter-evans/enable-pull-request-automerge@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: merge
